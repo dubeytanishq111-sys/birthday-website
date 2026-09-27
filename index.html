@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Simi 💖</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#ffd6e7,#e8d8ff);
+  overflow:hidden;
+  color:#633451;
+}
+
+.card{
+  width:90%;
+  max-width:420px;
+  padding:35px 25px;
+  text-align:center;
+  background:rgba(255,255,255,.92);
+  border-radius:30px;
+  box-shadow:0 15px 50px rgba(80,30,70,.25);
+}
+
+.lock{
+  font-size:65px;
+}
+
+h1{
+  margin:12px 0;
+  font-size:30px;
+}
+
+p{
+  font-size:17px;
+  line-height:1.6;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border:2px solid #e5a4c4;
+  border-radius:15px;
+  font-size:17px;
+  text-align:center;
+  outline:none;
+}
+
+button{
+  width:100%;
+  margin-top:15px;
+  padding:15px;
+  border:none;
+  border-radius:15px;
+  background:#d85891;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#error{
+  color:#d13e68;
+  min-height:25px;
+}
+
+#surprise{
+  display:none;
+}
+
+.big{
+  font-size:65px;
+}
+
+.heart{
+  position:fixed;
+  top:-40px;
+  animation:fall 6s linear infinite;
+  font-size:25px;
+}
+
+@keyframes fall{
+  from{
+    transform:translateY(-10vh) rotate(0deg);
+  }
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOCK SCREEN -->
+
+<div class="card" id="lock">
+
+  <div class="lock">🔐</div>
+
+  <h1>My Favorite Word</h1>
+
+  <p>
+    This little surprise is locked just for you 💗
+    <br>
+    Enter the special word to open it ✨
+  </p>
+
+  <input
+    id="password"
+    type="password"
+    placeholder="Enter password"
+  >
+
+  <button onclick="unlock()">
+    🔓 Unlock Surprise
+  </button>
+
+  <p id="error"></p>
+
+</div>
+
+
+<!-- SURPRISE -->
+
+<div class="card" id="surprise">
+
+  <div class="big">🎂💖</div>
+
+  <h1>Happy Birthday, Simi! 🌸</h1>
+
+  <p>
+    Simi, you are truly special. 💕
+    <br><br>
+
+    May your smile always stay this beautiful,
+    and may your life be filled with happiness,
+    laughter and beautiful moments. ✨
+    <br><br>
+
+    <b>Have the most amazing birthday! 🎀</b>
+  </p>
+
+  <div style="font-size:32px">
+    🌷 🦋 🎁 💕 ✨ 🌷
+  </div>
+
+</div>
+
+
+<script>
+
+function unlock(){
+
+  const password =
+    document.getElementById("password").value
+    .trim()
+    .toLowerCase();
+
+  if(password === "simi"){
+
+    document.getElementById("lock").style.display="none";
+
+    document.getElementById("surprise").style.display="block";
+
+    // Falling hearts
+    for(let i=0;i<25;i++){
+
+      const heart=document.createElement("div");
+
+      heart.className="heart";
+
+      heart.innerHTML=
+        ["💗","💕","💖","🌸","✨"][i%5];
+
+      heart.style.left=
+        Math.random()*100+"vw";
+
+      heart.style.animationDelay=
+        Math.random()*5+"s";
+
+      document.body.appendChild(heart);
+    }
+
+  }else{
+
+    document.getElementById("error").innerText=
+      "Wrong password 😜 Try again!";
+
+  }
+}
+
+
+// Enter button se bhi unlock hoga
+document.getElementById("password")
+.addEventListener("keydown",function(event){
+
+  if(event.key==="Enter"){
+    unlock();
+  }
+
+});
+
+</script>
+
+</body>
+  </html>
